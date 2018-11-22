@@ -1,0 +1,24 @@
+{% load staticfiles %}
+<html>
+<head>
+    <title>Drop a file here</title>
+    <link rel="stylesheet" href="/static/style1.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script src="/static/js/script1.js"></script>
+    <script src="/static/js/chart1.js"></script>
+    <script src="/static/js/csv_reader1.js"></script>
+</head>
+<body>
+<form action="/upload.php">
+    <div style="text-align: left; margin-bottom: -50px"><img src="/static/apm.jpg" height="50px"></div>
+    <div id="dropZone">
+        Для загрузки перетащите файл сюда.
+        <canvas id="myChart" width="800" height="300"></canvas>
+    </div>
+    <div id="dropZone1">
+        Для загрузки перетащите файл сюда.
+        <canvas id="myChart2" width="800" height="300"></canvas>
+    </div>
+</form>
+</body>
+</html>
