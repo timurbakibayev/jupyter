@@ -6,6 +6,7 @@ import os
 class Author(models.Model):
     name = models.TextField(max_length=100, blank=False, null=False)
     path = models.TextField(max_length=100, blank=False, null=False)
+    user_id = models.IntegerField(default=-1)
 
 
 def upload_to(instance, filename):
@@ -29,3 +30,10 @@ class Attachment(models.Model):
 
     class Meta:
         ordering = ["-file_name"]
+
+
+class Html(models.Model):
+    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    name = models.TextField(max_length=100, default="", blank=False, null=False)
+    attachment = models.ForeignKey(Attachment, on_delete=models.CASCADE)
+    size = models.IntegerField(default=0)
