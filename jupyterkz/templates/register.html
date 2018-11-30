@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/register.css">
+    <title>Registration</title>
+</head>
+<body>
+<form method="post" class="registerForm">
+    {% csrf_token %}
+    <div class="registerElement">Your name: <input type="text" name="first_name"></div>
+    <div class="registerElement">Username: <input type="text" name="username"></div>
+    <div class="registerElement">Email: <input type="email" name="email"></div>
+    <div class="registerElement">Password: <input type="password" name="password"></div>
+    <div class="registerElement">Folder Name: <input type="text" name="folder"></div>
+    <div class="registerElement error">{{ message }}</div>
+    <div class="registerElement"><button type="submit">Submit</button></div>
+</form>
+</body>
+</html>
