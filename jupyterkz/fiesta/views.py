@@ -67,4 +67,4 @@ def login_form(request):
 def index(request):
     user = request.user
 
-    return render(request, "interface.html", context={"user": user})
+    return render(request, "home.html", context={"user": user})
