@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="./static/home/style.min.css" type="text/css">
 
     <link rel="stylesheet" href="./static/home/custom.css" type="text/css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 
 </head>
@@ -36,14 +37,13 @@
 
         <span id="shutdown_widget">
       <button id="shutdown" class="btn btn-sm navbar-btn" title="Stop the Jupyter server">
-          Quit
+          {{ user.username }}
       </button>
     </span>
 
-
         <span id="login_widget">
 
-    <button id="logout" class="btn btn-sm navbar-btn">Logout</button>
+    <button id="logout" class="btn btn-sm navbar-btn" onclick="window.location='/login'">Login</button>
 
     </span>
 
@@ -102,50 +102,24 @@
                         </div>
                         <div class="col-sm-4 no-padding tree-buttons">
                             <div class="pull-right">
-                                <form id="alternate_upload" class="alternate_upload">
-                  <span id="notebook_list_info" class="toolbar_info">
-                  <span class="btn btn-xs btn-default btn-upload">
-                  <input title="Click to browse for a file to upload." type="file" name="datafile" class="fileinput"
-                         multiple="multiple">
-                  Upload
-                  </span>
-                  </span>
-                                </form>
-                                <div id="new-buttons" class="btn-group">
-                                    <button class="dropdown-toggle btn btn-default btn-xs" id="new-dropdown-button"
+                                <form id="file_upload" method="post" class="alternate_upload">
+                                    {% csrf_token %}
+                                  <span id="notebook_list_info" class="toolbar_info">
+                                  <span class="btn btn-xs btn-default btn-upload">
+                                  <input title="Click to browse for a file to upload." type="file" name="datafile" class="fileinput"
+                                         multiple="multiple">
+                                  Upload
+                                  </span>
+                                  </span>
+                                    <button type="submit" class="dropdown-toggle btn btn-default btn-xs" id="new-dropdown-button"
                                             data-toggle="dropdown">
-                                        <span>New</span>
-                                        <span class="caret"></span>
+                                        <span>Submit</span>
                                     </button>
-                                    <ul id="new-menu" class="dropdown-menu">
-                                        <li role="presentation" class="dropdown-header" id="notebook-kernels">
-                                            Notebook:
-                                        </li>
-                                        <li id="kernel-python3"><a href="/"
-                                                                   title="Create a new notebook with Python 3">Python
-                                            3</a></li>
-                                        <li role="presentation" class="divider"></li>
-                                        <li role="presentation" class="dropdown-header">Other:</li>
-                                        <li role="presentation" id="new-file">
-                                            <a role="menuitem" tabindex="-1" href="/">Text
-                                                File</a>
-                                        </li>
-                                        <li role="presentation" id="new-folder">
-                                            <a role="menuitem" tabindex="-1"
-                                               href="/">Folder</a>
-                                        </li>
-
-                                        <li role="presentation" id="new-terminal">
-                                            <a role="menuitem" tabindex="-1"
-                                               href="/">Terminal</a>
-                                        </li>
-
-                                    </ul>
-                                </div>
+                                </form>
                                 <div class="btn-group">
                                     <button id="refresh_notebook_list" title="Refresh notebook list"
                                             aria-label="Refresh notebook list" class="btn btn-default btn-xs"><i
-                                            class="fa fa-refresh"></i></button>
+                                            class="fa fa-refresh" onclick="window.location='/'"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -213,7 +187,7 @@
                             <div class="col-md-12">
                                 <input type="checkbox" title="Click here to rename, delete, etc."><i
                                     class="fa fa-folder"> </i><a class="item_link"
-                                                                                          href="/">&nbsp;&nbsp;<span
+                                                                 href="/">&nbsp;&nbsp;<span
                                     class="item_name">anaconda3</span></a><span
                                     class="file_size pull-right">&nbsp;</span><span class="item_modified pull-right"
                                                                                     title="2018-10-05 20:22">2 months ago</span>
@@ -225,8 +199,8 @@
                         <div class="list_item row">
                             <div class="col-md-12"><input type="checkbox" title="Click here to rename, delete, etc."><i
                                     class="fa fa-book"></i><a class="item_link"
-                                                                                        href="http://localhost:8888/edit/samplefile.csv"
-                                                                                        target="_blank">&nbsp;&nbsp;<span
+                                                              href="http://localhost:8888/edit/samplefile.csv"
+                                                              target="_blank">&nbsp;&nbsp;<span
                                     class="item_name">samplefile.csv</span></a><span class="file_size pull-right">3.12 kB</span><span
                                     class="item_modified pull-right" title="2018-11-03 23:42">a month ago</span>
                                 <div class="item_buttons pull-right">
