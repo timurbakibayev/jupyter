@@ -29,7 +29,7 @@ class FileUploadView(views.APIView):
 
 
 
-        f = request.data['file']
+        f = request.data['datafile']
         instance = Attachment(
             parent_id=str(author.id),
             file_name=filename,

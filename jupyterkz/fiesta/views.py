@@ -2,6 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 
+from fiesta.models import Attachment
+from fiesta.models import Author
+from fiesta.models import Html
+
 
 # Create your views here.
 def register_form(request):
@@ -66,5 +70,24 @@ def login_form(request):
 
 def index(request):
     user = request.user
+
+    if request.method == "POST":
+        if user is not None:
+            f = request.POST['datafile']
+            filename = "123.html"
+            instance = Attachment(
+                parent_id=str(user.id),
+                file_name=filename,
+                attachment=f,
+                # user_id = user.id,
+            )
+            instance.save()
+
+            html = Html()
+            html.author = user
+            html.attachment = instance
+            html.name = filename
+            html.size = 0  # <----
+            html.save()
 
     return render(request, "home.html", context={"user": user})

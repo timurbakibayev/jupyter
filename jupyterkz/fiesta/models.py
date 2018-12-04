@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils.timezone import now as timezone_now
 import os
 
@@ -33,7 +34,7 @@ class Attachment(models.Model):
 
 
 class Html(models.Model):
-    author = models.ForeignKey(Author, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.TextField(max_length=100, default="", blank=False, null=False)
     attachment = models.ForeignKey(Attachment, on_delete=models.CASCADE)
     size = models.IntegerField(default=0)
