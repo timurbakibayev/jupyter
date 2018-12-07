@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 
@@ -68,7 +68,7 @@ def login_form(request):
     return render(request, "login.html", context={"message": message})
 
 
-def index(request, folder_name):
+def index(request, folder_name=""):
     user = request.user
 
     if request.method == "POST":
@@ -91,4 +91,12 @@ def index(request, folder_name):
             html.save()
             return redirect("/"+user.last_name)
 
-    return render(request, "home.html", context={"user": user})
+    if folder_name == "":
+        files = []
+        dirs = [i.last_name for i in User.objects.all() if i.last_name != ""]
+    else:
+        by_user = get_object_or_404(User, last_name=folder_name.lower())
+        files = Html.objects.filter(author=by_user)
+        dirs = []
+
+    return render(request, "home.html", context={"user": user, "files": files, "dirs": dirs})

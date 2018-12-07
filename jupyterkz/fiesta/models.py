@@ -38,4 +38,5 @@ class Html(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.TextField(max_length=100, default="", blank=False, null=False)
     attachment = models.ForeignKey(Attachment, on_delete=models.CASCADE)
+    date_time = models.DateTimeField(auto_now_add=True)
     size = models.IntegerField(default=0)
