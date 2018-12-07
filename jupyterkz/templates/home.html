@@ -102,12 +102,11 @@
                         </div>
                         <div class="col-sm-4 no-padding tree-buttons">
                             <div class="pull-right">
-                                <form id="file_upload" method="post" class="alternate_upload">
+                                <form id="file_upload" method="post" class="alternate_upload" enctype="multipart/form-data">
                                     {% csrf_token %}
                                   <span id="notebook_list_info" class="toolbar_info">
                                   <span class="btn btn-xs btn-default btn-upload">
-                                  <input title="Click to browse for a file to upload." type="file" name="datafile" class="fileinput" accept="text/html"
-                                         multiple="multiple">
+                                  <input title="Click to browse for a file to upload." type="file" name="datafile" class="fileinput" accept="text/html">
                                   Upload
                                   </span>
                                   </span>

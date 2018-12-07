@@ -12,8 +12,9 @@ class Author(models.Model):
 
 def upload_to(instance, filename):
     now = timezone_now()
+    user = User.objects.get(pk=instance.parent_id)
     filename_base, filename_ext = os.path.splitext(filename)
-    return 'my_uploads/{}_{}{}'.format(
+    return '{}/{}_{}{}'.format(user.last_name.replace(" ","").lower(),
         now.strftime("%Y_%m_%d/%H%M%S"),
         filename_base,
         filename_ext.lower()

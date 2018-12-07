@@ -68,13 +68,13 @@ def login_form(request):
     return render(request, "login.html", context={"message": message})
 
 
-def index(request):
+def index(request, folder_name):
     user = request.user
 
     if request.method == "POST":
         if user is not None:
-            f = request.POST['datafile']
-            filename = "123.html"
+            f = request.FILES['datafile']
+            filename = str(f)
             instance = Attachment(
                 parent_id=str(user.id),
                 file_name=filename,
@@ -89,5 +89,6 @@ def index(request):
             html.name = filename
             html.size = 0  # <----
             html.save()
+            return redirect("/"+user.last_name)
 
     return render(request, "home.html", context={"user": user})
