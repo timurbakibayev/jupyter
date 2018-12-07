@@ -106,12 +106,12 @@
                                     {% csrf_token %}
                                   <span id="notebook_list_info" class="toolbar_info">
                                   <span class="btn btn-xs btn-default btn-upload">
-                                  <input title="Click to browse for a file to upload." type="file" name="datafile" class="fileinput" accept="text/html">
+                                  <input title="Click to browse for a file to upload." type="file" name="datafile" class="fileinput" accept="text/html" onchange="document.getElementById('new-dropdown-button').style.visibility='visible'">
                                   Upload
                                   </span>
                                   </span>
                                     <button type="submit" class="dropdown-toggle btn btn-default btn-xs" id="new-dropdown-button"
-                                            data-toggle="dropdown">
+                                            style="visibility: collapse">
                                         <span>Submit</span>
                                     </button>
                                 </form>
@@ -203,7 +203,7 @@
                                     class="fa fa-book"></i><a class="item_link"
                                                               href="{{ file.attachment.attachment.url }}"
                                                               target="_blank">&nbsp;&nbsp;<span
-                                    class="item_name">{{ file.name }}</span></a><span class="file_size pull-right">{{ file.size }} kB</span><span
+                                    class="item_name">{{ file.name }}</span></a><span class="file_size pull-right">{{ file.calc_size }} kB</span><span
                                     class="item_modified pull-right" title="2018-11-03 23:42">{{ file.date_time }}</span>
                                 <div class="item_buttons pull-right">
                                     <div class="running-indicator" style="visibility: hidden;">Running</div>
