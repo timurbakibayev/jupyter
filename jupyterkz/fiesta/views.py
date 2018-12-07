@@ -100,3 +100,10 @@ def index(request, folder_name=""):
         dirs = []
 
     return render(request, "home.html", context={"user": user, "files": files, "dirs": dirs})
+
+
+def show(request, filename):
+    html = get_object_or_404(Html, pk=filename)
+    the_url = html.attachment.attachment.url
+    #attachment.attachment.url
+    return render(request,"cover.html", context={"html":html, "the_url": the_url})
