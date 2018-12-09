@@ -57,6 +57,11 @@
                         <label for="password_input"><strong>Password or token:</strong></label>
                         <input type="password" name="password" id="password_input" class="form-control">
                     </div>
+                    <br>
+                    <div class="row form-group" style="margin: 1em;">
+                        <span>{{ message }}</span>
+                    </div>
+                    <br>
                     <div class="row form-group" style="margin: 1em;">
                         <button type="submit" class="btn btn-default" id="login_submit">Log in</button>
                     </div>
@@ -104,24 +109,12 @@ http://localhost:8888/?token=c8de56fa... :: /Users/you/notebooks
             <h3>Setup a Password</h3>
             <p> You can also register by entering your token and a new password
                 on the fields below:</p>
-            <form action="/register/" method="post" class="">
                 <input type="hidden" name="_xsrf" value="2|dce3bfe7|e000bce443d343c2848d1d9e71df19f1|1543895978"/>
                 <div class="form-group">
-                    <label for="token_input"><h4>Token</h4></label>
-                    <input type="password" name="password" id="token_input" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="new_password_input"><h4>New Password</h4></label>
-                    <input type="password" name="new_password" id="new_password_input" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-default" id="login_new_pass_submit">Log in and set new
+                    <button class="btn btn-default" id="login_new_pass_submit" onclick="window.location='/register'">Log in and set new
                         password
                     </button>
                 </div>
-            </form>
-
-
         </div>
 
 
