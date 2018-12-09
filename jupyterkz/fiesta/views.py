@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 
@@ -107,3 +107,6 @@ def show(request, filename):
     the_url = html.attachment.attachment.url
     #attachment.attachment.url
     return render(request,"cover.html", context={"html":html, "the_url": the_url})
+
+def custom_css(request):
+    return HttpResponse("custom.css")

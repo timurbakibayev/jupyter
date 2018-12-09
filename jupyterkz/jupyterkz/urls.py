@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', views.register_form),
     path('login/', views.login_form),
+    path('show/custom.css', views.custom_css),
     path('show/<str:filename>', views.show),
     path('', views.index),
     path('<str:folder_name>', views.index),
