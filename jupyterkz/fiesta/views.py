@@ -90,7 +90,10 @@ def index(request, folder_name=""):
             html = Html()
             html.author = user
             html.attachment = instance
-            html.name = filename
+            if "." in filename:
+                html.name = filename.split(".")[0]
+            else:
+                html.name = filename
             html.size = 0  # <----
             html.save()
             return redirect("/"+user.username)
