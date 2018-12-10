@@ -12,6 +12,8 @@ def register_form(request):
     message = ""
     if request.method == "POST":
         # print(request.POST)
+        if request.POST.get("code", "") != "5918":
+            message = "Incorrect registration code. Please, write to timurbakibayev[@]gmail.com to get this code."
         if request.POST.get("email", "") == "":
             message = "Enter a correct email"
         if request.POST.get("username", "") == "":
@@ -100,7 +102,7 @@ def index(request, folder_name=""):
 
     if folder_name == "":
         files = []
-        dirs = [i.username for i in User.objects.all()]
+        dirs = [i.username for i in User.objects.all() if not i.is_superuser]
     else:
         by_user = get_object_or_404(User, username=folder_name.lower())
         files = Html.objects.filter(author=by_user)
