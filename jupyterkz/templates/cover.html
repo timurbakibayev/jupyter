@@ -8,7 +8,7 @@
 </head>
 <body>
 jupyter.kz. Author: {{ html.author.first_name }} {% if html.author.username == user.username %} (<a href="/remove/{{ html.id }}">Remove</a>) {% endif %}
-<div w3-include-html="http://localhost:8000{{ the_url }}">
+<div w3-include-html="http://jupyter.kz{{ the_url }}">
 </div>
 <script>
     function includeHTML() {
