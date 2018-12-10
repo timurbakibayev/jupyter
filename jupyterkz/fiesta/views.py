@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 from fiesta.models import Attachment
 from fiesta.models import Author
@@ -42,6 +42,11 @@ def register_form(request):
             return redirect("/")
 
     return render(request, "register.html", context={"message": message})
+
+
+def logout_form(request):
+    logout(request)
+    return redirect("/")
 
 
 def login_form(request):
@@ -88,13 +93,13 @@ def index(request, folder_name=""):
             html.name = filename
             html.size = 0  # <----
             html.save()
-            return redirect("/"+user.last_name)
+            return redirect("/"+user.username)
 
     if folder_name == "":
         files = []
-        dirs = [i.last_name for i in User.objects.all() if i.last_name != ""]
+        dirs = [i.username for i in User.objects.all()]
     else:
-        by_user = get_object_or_404(User, last_name=folder_name.lower())
+        by_user = get_object_or_404(User, username=folder_name.lower())
         files = Html.objects.filter(author=by_user)
         dirs = []
 
@@ -106,6 +111,14 @@ def show(request, filename):
     the_url = html.attachment.attachment.url
     #attachment.attachment.url
     return render(request,"cover.html", context={"html":html, "the_url": the_url})
+
+def remove(request, filename):
+    user = request.user
+    html = get_object_or_404(Html, pk=filename)
+    if user == html.author:
+        html.delete()
+    #attachment.attachment.url
+    return redirect("/"+user.username)
 
 def custom_css(request):
     return HttpResponse("custom.css")

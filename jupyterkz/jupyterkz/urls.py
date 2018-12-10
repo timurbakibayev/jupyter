@@ -25,8 +25,11 @@ urlpatterns = [
     path('register/', views.register_form),
     path('login', views.login_form),
     path('login/', views.login_form),
+    path('logout', views.logout_form),
+    path('logout/', views.logout_form),
     path('show/custom.css', views.custom_css),
     path('show/<str:filename>', views.show),
+    path('remove/<str:filename>', views.remove),
     path('', views.index),
     path('<str:folder_name>', views.index),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

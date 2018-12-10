@@ -36,14 +36,19 @@
         <span class="flex-spacer"></span>
 
         <span id="shutdown_widget">
+      {% if user.username %}
       <button id="shutdown" class="btn btn-sm navbar-btn" title="Stop the Jupyter server">
           {{ user.username }}
       </button>
+      {% endif %}
     </span>
 
         <span id="login_widget">
-
-    <button id="logout" class="btn btn-sm navbar-btn" onclick="window.location='/login'">Login</button>
+    {% if user.username %}
+        <button id="logout" class="btn btn-sm navbar-btn" onclick="window.location='/logout'">Log out</button>
+    {% else %}
+        <button id="logout" class="btn btn-sm navbar-btn" onclick="window.location='/login'">Log in</button>
+    {% endif %}
 
     </span>
 
@@ -107,10 +112,10 @@
                                   <span id="notebook_list_info" class="toolbar_info">
                                   <span class="btn btn-xs btn-default btn-upload">
                                   <input title="Click to browse for a file to upload." type="file" name="datafile" class="fileinput" accept="text/html" onchange="document.getElementById('new-dropdown-button').style.visibility='visible';
-                        document.getElementById('new-dropdown-folder-name').style.visibility='visible'">
+                        ">
                                   Upload
                                   </span>
-                                  <input type="text" name="folder" class="btn btn-xs btn-default btn-upload" id="new-dropdown-folder-name" style="visibility: hidden; width:50px" placeholder="folder">
+{#                                  <input type="text" name="folder" class="btn btn-xs btn-default btn-upload" id="new-dropdown-folder-name" style="visibility: hidden; width:50px" placeholder="folder">#}
                                   </span>
                                     <button type="submit" class="dropdown-toggle btn btn-default btn-xs" id="new-dropdown-button"
                                             style="visibility: collapse">
