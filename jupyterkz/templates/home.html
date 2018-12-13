@@ -194,10 +194,10 @@
                             <div class="col-md-12">
                                 <input type="checkbox" title="Click here to rename, delete, etc."><i
                                     class="fa fa-folder"> </i><a class="item_link"
-                                                                 href="/{{ dir }}">&nbsp;&nbsp;<span
-                                    class="item_name">{{ dir }}</span></a><span
+                                                                 href="/{{ dir.folder }}">&nbsp;&nbsp;<span
+                                    class="item_name">{{ dir.folder }}</span></a><span
                                     class="file_size pull-right">&nbsp;</span><span class="item_modified pull-right"
-                                                                                    title="2018-10-05 20:22">2 months ago</span>
+                                                                                    title="{{ dir.name }}">{{ dir.name }}</span>
                                 <div class="item_buttons pull-right">
                                     <div class="running-indicator" style="visibility: hidden;">Running</div>
                                 </div>
