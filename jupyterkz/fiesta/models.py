@@ -53,4 +53,4 @@ class Visit(models.Model):
     date_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.url
+        return str(self.date_time) + " " + self.url
