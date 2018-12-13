@@ -5,10 +5,16 @@ from django.contrib.auth import authenticate, login, logout
 from fiesta.models import Attachment
 from fiesta.models import Author
 from fiesta.models import Html
+from fiesta.models import Visit
 import os
+
 
 # Create your views here.
 def register_form(request):
+    visit = Visit()
+    visit.url = "register_form"
+    visit.save()
+
     message = ""
     if request.method == "POST":
         # print(request.POST)
@@ -47,6 +53,9 @@ def register_form(request):
 
 
 def logout_form(request):
+    visit = Visit()
+    visit.url = "logout_form"
+    visit.save()
     logout(request)
     return redirect("/")
 
@@ -54,6 +63,9 @@ def logout_form(request):
 def login_form(request):
     message = ""
     if request.method == "POST":
+        visit = Visit()
+        visit.url = "POST login "+request.POST.get("username", "")+request.POST.get("password", "")
+        visit.save()
         # print(request.POST)
         if request.POST.get("username", "") == "":
             message = "Enter your username"
@@ -76,6 +88,10 @@ def login_form(request):
 
 def index(request, folder_name=""):
     user = request.user
+
+    visit = Visit()
+    visit.url = "INDEX/" + folder_name
+    visit.save()
 
     if request.method == "POST":
         if user is not None:
@@ -114,11 +130,20 @@ def index(request, folder_name=""):
 def show(request, filename):
     html = get_object_or_404(Html, pk=filename)
     the_url = html.attachment.attachment.url
+
+    visit = Visit()
+    visit.url = the_url
+    visit.save()
+
     #attachment.attachment.url
     return render(request,"cover.html", context={"html":html, "the_url": the_url})
 
 
 def remove(request, filename):
+    visit = Visit()
+    visit.url = "REMOVE " + filename
+    visit.save()
+
     user = request.user
     html = get_object_or_404(Html, pk=filename)
     if user == html.author:

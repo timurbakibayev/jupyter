@@ -208,7 +208,7 @@
                         <div class="list_item row">
                             <div class="col-md-12"><input type="checkbox" title="Click here to rename, delete, etc."><i
                                     class="fa fa-book"></i><a class="item_link"
-                                                              href="{{ file.attachment.attachment.url }}"
+                                                              href="/show/{{ file.id }}"
                                                               target="_blank">&nbsp;&nbsp;<span
                                     class="item_name">{{ file.name }}</span></a>
                                 {% if file.author.username == user.username %} (<a href="/remove/{{ file.id }}">Remove</a>) {% endif %}
