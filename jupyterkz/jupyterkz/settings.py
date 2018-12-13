@@ -24,7 +24,7 @@ SECRET_KEY = 'eco7q+vu$qha&ly09lvi=(y%9%kz(#+awoevf_jz2d#vmp2kb*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['jupyter.kz']
+ALLOWED_HOSTS = ['jupyter.kz','localhost:8000',u'localhost','www.jupyter.kz']
 
 # Application definition
 
@@ -123,5 +123,5 @@ MEDIA_URL = '/media/'
 CORS_ORIGIN_WHITELIST = (
     'jupyter.kz',
     'localhost:8000',
-    '127.0.0.1:9000'
+    '127.0.0.1:8000'
 )

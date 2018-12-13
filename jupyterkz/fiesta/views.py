@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from fiesta.models import Attachment
 from fiesta.models import Author
 from fiesta.models import Html
-
+import os
 
 # Create your views here.
 def register_form(request):
@@ -117,13 +117,19 @@ def show(request, filename):
     #attachment.attachment.url
     return render(request,"cover.html", context={"html":html, "the_url": the_url})
 
+
 def remove(request, filename):
     user = request.user
     html = get_object_or_404(Html, pk=filename)
     if user == html.author:
+        try:
+            os.remove(str(html.attachment.attachment.file))
+        except Exception as e:
+            print(str(e))
         html.delete()
     #attachment.attachment.url
     return redirect("/"+user.username)
+
 
 def custom_css(request):
     return HttpResponse("custom.css")

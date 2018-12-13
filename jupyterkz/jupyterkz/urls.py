@@ -28,6 +28,7 @@ urlpatterns = [
     path('logout', views.logout_form),
     path('logout/', views.logout_form),
     path('show/custom.css', views.custom_css),
+    path('custom.css', views.custom_css),
     path('show/<str:filename>', views.show),
     path('remove/<str:filename>', views.remove),
     path('', views.index),

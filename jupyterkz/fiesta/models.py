@@ -46,3 +46,11 @@ class Html(models.Model):
             return self.attachment.attachment.size //1024
         except:
             return "0"
+
+
+class Visit(models.Model):
+    url = models.TextField(max_length=1000, default="", blank=False, null=False)
+    date_time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.url

@@ -208,9 +208,11 @@
                         <div class="list_item row">
                             <div class="col-md-12"><input type="checkbox" title="Click here to rename, delete, etc."><i
                                     class="fa fa-book"></i><a class="item_link"
-                                                              href="/show/{{ file.id }}"
+                                                              href="{{ file.attachment.attachment.url }}"
                                                               target="_blank">&nbsp;&nbsp;<span
-                                    class="item_name">{{ file.name }}</span></a><span class="file_size pull-right">{{ file.calc_size }} kB</span><span
+                                    class="item_name">{{ file.name }}</span></a>
+                                {% if file.author.username == user.username %} (<a href="/remove/{{ file.id }}">Remove</a>) {% endif %}
+                                <span class="file_size pull-right">{{ file.calc_size }} kB</span><span
                                     class="item_modified pull-right" title="2018-11-03 23:42">{{ file.date_time }}</span>
                                 <div class="item_buttons pull-right">
                                     <div class="running-indicator" style="visibility: hidden;">Running</div>
