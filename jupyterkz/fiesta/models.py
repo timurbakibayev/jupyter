@@ -40,6 +40,7 @@ class Html(models.Model):
     attachment = models.ForeignKey(Attachment, on_delete=models.CASCADE)
     date_time = models.DateTimeField(auto_now_add=True)
     size = models.IntegerField(default=0)
+    visits = models.IntegerField(default=0)
 
     def calc_size(self):
         try:

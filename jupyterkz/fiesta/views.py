@@ -131,6 +131,9 @@ def show(request, filename):
     html = get_object_or_404(Html, pk=filename)
     the_url = html.attachment.attachment.url
 
+    html.visits += 1
+    html.save()
+
     visit = Visit()
     visit.url = the_url
     visit.save()
