@@ -211,7 +211,10 @@
                                                               href="/show/{{ file.id }}"
                                                               target="_blank">&nbsp;&nbsp;<span
                                     class="item_name">{{ file.name }}</span></a>
-                                {% if file.author.username == user.username %} (<a href="/remove/{{ file.id }}">Remove</a>) {% endif %}
+                                {% if file.author.username == user.username %} <button onclick="
+                                        if (confirm('Are you sure?'))
+                                            window.location = '/remove/{{ file.id }}';
+                                        " class="btn btn-xs btn-default">Remove</button> {% endif %}
                                 <span class="file_size pull-right">{{ file.calc_size }} kB</span><span
                                     class="item_modified pull-right" title="2018-11-03 23:42">{{ file.date_time }}</span>
                                 <div class="item_buttons pull-right">
