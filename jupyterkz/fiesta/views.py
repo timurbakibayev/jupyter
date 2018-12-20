@@ -124,7 +124,7 @@ def index(request, folder_name=""):
         files = Html.objects.filter(author=by_user)
         dirs = []
 
-    return render(request, "home.html", context={"user": user, "files": files, "dirs": dirs})
+    return render(request, "home.html", context={"user": user, "files": files, "dirs": dirs, "folder_name": folder_name.lower()})
 
 
 def show(request, filename):
