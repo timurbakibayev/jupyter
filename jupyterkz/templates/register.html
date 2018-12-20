@@ -1,20 +1,123 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/favicon.ico">
-    <title>Registration</title>
+    <meta charset="utf-8">
+
+    <title>Jupyter Notebook</title>
+    <link id="favicon" rel="shortcut icon" type="image/x-icon"
+          href="/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <link rel="stylesheet"
+          href="/static/home/jquery-ui.min.css"
+          type="text/css"/>
+    <link rel="stylesheet"
+          href="/static/home/jquery.typeahead.min.css"
+          type="text/css"/>
+    <link rel="stylesheet"
+          href="/static/css/register.css"
+          type="text/css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="/static/home/style.min.css" type="text/css"/>
+
+    <link rel="stylesheet" href="/static/home/custom.css" type="text/css"/>
+
+
 </head>
-<body>
-<form method="post" class="registerForm">
-    {% csrf_token %}
+
+<body class="">
+
+
+<div id="header">
+    <div id="header-container" class="container">
+        <div id="ipython_notebook" class="nav navbar-brand"><a href="/tree" title='dashboard'>
+            <img src='/static/home/logo.png?v=641991992878ee24c6f3826e81054a0f' alt='Jupyter Notebook'/>
+        </a></div>
+
+
+    </div>
+    <div class="header-bar"></div>
+
+</div>
+
+<div id="site">
+
+
+    <div id="ipython-main-app" class="container">
+
+        <div class="col-sm-6 col-sm-offset-3 text-left rendered_html">
+            Регистрация на jupyter.kz
+            <div class="row">
+                <form method="post" class="navbar-form pull-left">
+                    {% csrf_token %}
+<div class="row form-group" style="margin: 1em;">
     <div class="registerElement">Your name: <input type="text" name="first_name"></div>
+</div><div class="row form-group" style="margin: 1em;">
     <div class="registerElement">Username: <input type="text" name="username"></div>
+                    </div><div class="row form-group" style="margin: 1em;">
     <div class="registerElement">Email: <input type="email" name="email"></div>
+                    </div><div class="row form-group" style="margin: 1em;">
     <div class="registerElement">Your Password: <input type="password" name="password"></div>
-    <div class="registerElement">Registration Code: <input type="password" name="code"></div>
+                    </div><div class="row form-group" style="margin: 1em;">
+                    <br> На данный момент проект находится в альфа-версии, поэтому необходимо ввести код приглашения
+    <div class="registerElement">Invitation Code: <input type="password" name="code"></div>
+                    </div><div class="row form-group" style="margin: 1em;">
     <div class="registerElement error">{{ message }}</div>
-    <div class="registerElement"><button type="submit">Submit</button></div>
-</form>
+                    </div>
+                    <br>
+                    <div class="row form-group" style="margin: 1em;">
+                        <button type="submit" class="btn btn-default" id="login_submit">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-sm-offset-3 text-left rendered_html">
+            <h3>
+                Token authentication is enabled
+            </h3>
+            <p>
+                If no password has been configured, you need to open the notebook
+                server with its login token in the URL, or paste it above.
+                This requirement will be lifted if you
+                <b><a href='https://jupyter-notebook.readthedocs.io/en/stable/public_server.html'>
+                    enable a password</a></b>.
+            </p>
+            <p>
+                The command:
+            <pre>jupyter notebook list</pre>
+            will show you the URLs of running servers with their tokens,
+            which you can copy and paste into your browser. For example:
+            </p>
+            <pre>Currently running servers:
+http://localhost:8888/?token=c8de56fa... :: /Users/you/notebooks
+</pre>
+            <p>
+                or you can paste just the token value into the password field on this
+                page.
+            </p>
+            <p>
+                See
+                <b><a
+                        href='https://jupyter-notebook.readthedocs.io/en/stable/public_server.html'>
+                    the documentation on how to enable a password</a>
+                </b>
+                in place of token authentication,
+                if you would like to avoid dealing with random tokens.
+            </p>
+            <p>
+                Cookies are required for authenticated access to notebooks.
+            </p>
+        </div>
+
+
+    </div>
+
+
+</div>
+
 </body>
+
 </html>

@@ -19,18 +19,20 @@ from django.urls import path
 from fiesta import views
 from jupyterkz import settings
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('register', views.register_form),
-    path('register/', views.register_form),
-    path('login', views.login_form),
-    path('login/', views.login_form),
-    path('logout', views.logout_form),
-    path('logout/', views.logout_form),
-    path('show/custom.css', views.custom_css),
-    path('custom.css', views.custom_css),
-    path('show/<str:filename>', views.show),
-    path('remove/<str:filename>', views.remove),
-    path('', views.index),
-    path('<str:folder_name>', views.index),
-] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + \
+              static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
+              [
+                  path('admin/', admin.site.urls),
+                  path('register', views.register_form),
+                  path('register/', views.register_form),
+                  path('login', views.login_form),
+                  path('login/', views.login_form),
+                  path('logout', views.logout_form),
+                  path('logout/', views.logout_form),
+                  path('show/custom.css', views.custom_css),
+                  path('custom.css', views.custom_css),
+                  path('show/<str:filename>', views.show),
+                  path('remove/<str:filename>', views.remove),
+                  path('', views.index),
+                  path('<str:folder_name>', views.index),
+              ]
