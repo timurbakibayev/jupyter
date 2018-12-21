@@ -23,6 +23,7 @@ urlpatterns = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + \
               static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
               [
                   path('admin/', admin.site.urls),
+                  path('sitemap.txt', views.sitemap),
                   path('register', views.register_form),
                   path('register/', views.register_form),
                   path('login', views.login_form),
