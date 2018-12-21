@@ -164,5 +164,5 @@ def custom_css(request):
 
 
 def sitemap(request):
-    urls = "\n".join([f"http://jupyter.kz/{i.username}" + i.username for i in User.objects.all() if not i.is_superuser])
+    urls = "\n".join(["http://jupyter.kz/"+ i.username for i in User.objects.all() if not i.is_superuser])
     return HttpResponse(urls)
